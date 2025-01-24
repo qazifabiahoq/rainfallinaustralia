@@ -1,14 +1,18 @@
 # Predicting Rainfall in Australia using Machine Learning Models
 
-#### Overview
+## Overview
 
 This project focuses on predicting rainfall in Australia using machine learning models. The goal is to compare the performance of various classification models and evaluate their ability to predict rainfall outcomes based on a given dataset. A dataset containing information about Australian weather conditions, including features like temperature, pressure, humidity, and more, is used to predict whether it will rain the next day.
 
-#### Dataset
+## Dataset
 
 The dataset used in this project is from the **Australian Rainfall Prediction** competition on Kaggle. It consists of historical weather data for various locations in Australia and is intended to predict whether it will rain on the next day. The features include daily weather parameters like temperature, humidity, wind speed, and other factors that might affect rainfall prediction.
 
-#### Models Used
+The original source of the data is the **Australian Government's Bureau of Meteorology**, and the latest data can be gathered from [this link](http://www.bom.gov.au/climate/dwo/).
+
+Additionally, the dataset contains extra columns like 'RainToday', and the target column is 'RainTomorrow'. The data used for this project was gathered from [Rattle](https://bitbucket.org/kayontoga/rattle/src/master/data/weatherAUS.RData).
+
+## Models Used
 
 The following machine learning models were applied:
 
@@ -17,7 +21,7 @@ The following machine learning models were applied:
 3. **Logistic Regression**: A linear model used for binary classification, it predicts the probability of the target variable belonging to a certain class.
 4. **Support Vector Machine (SVM)**: A powerful classifier that works by finding the hyperplane that best separates the classes in the feature space.
 
-#### Metrics Used
+## Metrics Used
 
 The performance of each model was evaluated using the following metrics:
 
@@ -26,7 +30,7 @@ The performance of each model was evaluated using the following metrics:
 - **F1 Score**: A metric that combines precision and recall, providing a balance between the two.
 - **Log Loss**: This metric measures the uncertainty of the model's predictions, primarily used for classification problems that predict probabilities (only used for Logistic Regression in this case).
 
-#### Results
+## Results
 
 The results of the models were as follows:
 
@@ -40,19 +44,19 @@ The results of the models were as follows:
 | **MSE**              | N/A        | N/A           | N/A                 | N/A        | 0.115721          |
 | **R2**               | N/A        | N/A           | N/A                 | N/A        | 0.427130          |
 
-#### Best Model
+## Best Model
 
 **Logistic Regression** performed the best based on the **Accuracy Score** (0.838168), which is the most commonly used metric for classification problems. The **Jaccard Index** and **F1 Score** for Logistic Regression are also relatively high, indicating that the model is not only accurate but also performs well in balancing false positives and false negatives. Although the **Log Loss** for Logistic Regression is relatively low (0.381038), it was only applicable for this model.
 
 In comparison, **SVM** showed poor performance with a **Jaccard Index** and **F1 Score** of 0.000000, indicating that the model was unable to effectively predict the classes.
 
-#### Acknowledgment
+## Acknowledgment
 
 This project is part of the **Machine Learning with Python** course, which is a part of the **Data Science Professional Certificate** by IBM. The implementation of this project was conducted as part of the learning journey in applying machine learning algorithms to real-world datasets.
 
 ---
 
-### About the Authors:
+## About the Authors:
 - **Joseph Santarcangelo** has a PhD in Electrical Engineering, with research focused on using machine learning, signal processing, and computer vision to determine how videos impact human cognition. Joseph has been working for IBM since completing his PhD.
 - **Other Contributors**: **Svitlana Kramar**
 
