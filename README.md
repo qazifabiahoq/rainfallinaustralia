@@ -1,64 +1,82 @@
-# Predicting Rainfall in Australia using Machine Learning Models
+# Predicting Rainfall in Australia Using Machine Learning Models
 
-## Overview
+## Project Description
 
-This project focuses on predicting rainfall in Australia using machine learning models. The goal is to compare the performance of various classification models and evaluate their ability to predict rainfall outcomes based on a given dataset. A dataset containing information about Australian weather conditions, including features like temperature, pressure, humidity, and more, is used to predict whether it will rain the next day.
+This project aims to predict whether it will rain the next day in various locations across Australia by applying and comparing multiple machine learning classification models. The focus is on utilizing historical weather data—such as temperature, humidity, pressure, and wind speed—to create reliable models that can forecast rainfall.
+
+Accurate rainfall prediction has practical importance for agriculture, water resource management, and daily planning across Australia.
+
+## Who Will Benefit and Why?
+
+* **Farmers and Agricultural Planners:** Can make better-informed decisions about irrigation and crop management based on upcoming rainfall predictions.
+* **Water Resource Managers:** Can optimize reservoir and water distribution systems to prepare for potential rainfall or drought.
+* **Government Agencies:** Improved weather forecasting aids in disaster preparedness and public safety alerts.
+* **Businesses and the Public:** Daily activities and operations can be better planned around expected weather conditions.
+
+The use of machine learning models improves prediction accuracy compared to traditional methods, providing timely and actionable insights.
 
 ## Dataset
 
-The dataset used in this project is from the **Australian Rainfall Prediction** competition on Kaggle. It consists of historical weather data for various locations in Australia and is intended to predict whether it will rain on the next day. The features include daily weather parameters like temperature, humidity, wind speed, and other factors that might affect rainfall prediction.
+The dataset originates from the **Australian Rainfall Prediction** competition on Kaggle and contains daily weather observations from the **Australian Government’s Bureau of Meteorology**. It includes features such as temperature, humidity, wind speed, pressure, and categorical indicators like 'RainToday'. The target variable is 'RainTomorrow', indicating if it rained the following day.
 
-The original source of the data is the **Australian Government's Bureau of Meteorology**, and the latest data can be gathered from [this link](http://www.bom.gov.au/climate/dwo/).
+Data used here was accessed via [Rattle's repository](https://bitbucket.org/kayontoga/rattle/src/master/data/weatherAUS.RData).
 
-Additionally, the dataset contains extra columns like 'RainToday', and the target column is 'RainTomorrow'. The data used for this project was gathered from [Rattle](https://bitbucket.org/kayontoga/rattle/src/master/data/weatherAUS.RData).
+## Approach
 
-## Models Used
+Four machine learning classification models were implemented and evaluated for their rainfall prediction performance:
 
-The following machine learning models were applied:
+1. **K-Nearest Neighbors (KNN):** Classifies based on the closest data points in feature space.
+2. **Decision Tree Classifier:** Builds a tree structure to split data by feature thresholds for classification.
+3. **Logistic Regression:** Predicts probability of rainfall using a linear relationship between features and outcome.
+4. **Support Vector Machine (SVM):** Finds the optimal boundary to separate rain/no-rain classes in the data.
 
-1. **K-Nearest Neighbors (KNN)**: This model predicts the target class based on the majority class of the nearest neighbors in the feature space.
-2. **Decision Tree Classifier**: A decision tree model splits the data into subsets based on feature values, creating a tree structure that helps predict the outcome.
-3. **Logistic Regression**: A linear model used for binary classification, it predicts the probability of the target variable belonging to a certain class.
-4. **Support Vector Machine (SVM)**: A powerful classifier that works by finding the hyperplane that best separates the classes in the feature space.
+Models were assessed with multiple metrics:
 
-## Metrics Used
+* Accuracy Score
+* Jaccard Index
+* F1 Score
+* Log Loss (for Logistic Regression only)
 
-The performance of each model was evaluated using the following metrics:
+This multi-metric evaluation ensured balanced consideration of precision, recall, and overall correctness.
 
-- **Accuracy Score**: This measures the overall accuracy of the model by comparing the predicted values with the actual values.
-- **Jaccard Index**: This measures the similarity between the predicted and actual values by dividing the intersection of predicted and true values by the union.
-- **F1 Score**: A metric that combines precision and recall, providing a balance between the two.
-- **Log Loss**: This metric measures the uncertainty of the model's predictions, primarily used for classification problems that predict probabilities (only used for Logistic Regression in this case).
+## Key Findings
 
-## Results
+**Which model predicts rainfall most accurately?**
 
-The results of the models were as follows:
+* Logistic Regression achieved the highest accuracy score of **83.8%**, outperforming KNN and Decision Tree models which had accuracies around **75.4%**.
+* Logistic Regression also had the best Jaccard Index (**0.51**) and F1 Score (**0.68**), indicating a good balance between false positives and false negatives.
 
-| Metric              | KNN        | Decision Tree | Logistic Regression | SVM        | Linear Regression |
-|---------------------|------------|---------------|---------------------|------------|-------------------|
-| **Accuracy Score**   | 0.754198   | 0.754198      | 0.838168            | 0.722137   | N/A               |
-| **Jaccard Index**    | 0.399254   | 0.399254      | 0.511521            | 0.000000   | N/A               |
-| **F1 Score**         | 0.570667   | 0.570667      | 0.676829            | 0.000000   | N/A               |
-| **Log Loss**         | N/A        | N/A           | 0.381038            | N/A        | N/A               |
-| **MAE**              | N/A        | N/A           | N/A                 | N/A        | 0.256319          |
-| **MSE**              | N/A        | N/A           | N/A                 | N/A        | 0.115721          |
-| **R2**               | N/A        | N/A           | N/A                 | N/A        | 0.427130          |
+**How did other models perform?**
 
-## Best Model
+* KNN and Decision Tree showed moderate accuracy (\~75%), with similar Jaccard and F1 scores (\~0.40 and 0.57 respectively).
+* SVM performed poorly with zero Jaccard and F1 scores, indicating it failed to classify rainfall effectively in this dataset.
 
-**Logistic Regression** performed the best based on the **Accuracy Score** (0.838168), which is the most commonly used metric for classification problems. The **Jaccard Index** and **F1 Score** for Logistic Regression are also relatively high, indicating that the model is not only accurate but also performs well in balancing false positives and false negatives. Although the **Log Loss** for Logistic Regression is relatively low (0.381038), it was only applicable for this model.
+**What about additional metrics?**
 
-In comparison, **SVM** showed poor performance with a **Jaccard Index** and **F1 Score** of 0.000000, indicating that the model was unable to effectively predict the classes.
+* Logistic Regression’s Log Loss was **0.38**, reflecting confident probability predictions.
+* Linear Regression was also tested but is not appropriate for classification and had lower performance on regression metrics.
 
-## Acknowledgment
+These results suggest that Logistic Regression is the most reliable model for this problem, given the available data.
 
-This project is part of the **Machine Learning with Python** course, which is a part of the **Data Science Professional Certificate** by IBM. The implementation of this project was conducted as part of the learning journey in applying machine learning algorithms to real-world datasets.
+## Conclusion
+
+This project demonstrates that logistic regression is the most effective machine learning model for predicting rainfall in Australia among the tested classifiers. Its high accuracy and balanced performance metrics make it a suitable tool for practical rainfall forecasting applications. Other classifiers like KNN and Decision Trees showed reasonable but lower accuracy, while SVM did not perform well for this dataset.
+
+## Recommendations
+
+Future work could explore feature engineering to enhance model inputs and test ensemble methods to potentially improve prediction accuracy further. Additionally, incorporating more granular temporal or spatial data may lead to better localized forecasts. Regular retraining with updated data would keep the models current with changing weather patterns.
 
 ---
 
-## About the Authors:
-- **Joseph Santarcangelo** has a PhD in Electrical Engineering, with research focused on using machine learning, signal processing, and computer vision to determine how videos impact human cognition. Joseph has been working for IBM since completing his PhD.
-- **Other Contributors**: **Svitlana Kramar**
+## Acknowledgments
 
-**Completed By**: Qazi Fabia Hoq  
-**This is part of the course "Machine Learning With Python" for Data Science Certification By IBM**
+This project was completed as part of the **Machine Learning with Python** course within the **Data Science Professional Certificate** by IBM.
+
+---
+
+## About the Authors
+
+* **Joseph Santarcangelo** – PhD in Electrical Engineering specializing in machine learning applications in signal processing and computer vision; IBM Researcher.
+* **Svitlana Kramar** – Contributor to the course materials and project resources.
+
+**Project completed by:** Qazi Fabia Hoq
